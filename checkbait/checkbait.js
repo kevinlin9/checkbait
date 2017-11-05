@@ -3,8 +3,6 @@ VIDEO_SEARCH = "https://www.youtube.com/results?";
 VIDEO_HOME = "https://www.youtube.com";
 VIDEO_TRENDING = "https://www.youtube.com/feed/trending";
 windowURL = window.location.href;
-alert("please work");
-alert("please work my friends");
 if(windowURL.includes(VIDEO_WATCH)) {
     videos = document.querySelectorAll("a.yt-simple-endpoint.style-scope.ytd-compact-video-renderer");
     turnRed(videos, getLinks(videos), VIDEO_WATCH);
