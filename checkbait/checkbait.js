@@ -3,11 +3,10 @@ VIDEO_SEARCH = "https://www.youtube.com/results?";
 VIDEO_HOME = "https://www.youtube.com";
 VIDEO_TRENDING = "https://www.youtube.com/feed/trending";
 windowURL = window.location.href;
-alert("please work");
-alert("please work my friends");
+
 if(windowURL.includes(VIDEO_WATCH)) {
     videos = document.querySelectorAll("a.yt-simple-endpoint.style-scope.ytd-compact-video-renderer");
-    turnRed(videos, getLinks(videos), VIDEO_WATCH);
+    turnRed(videos, getBaitLinks(getLinks(videos)), VIDEO_WATCH);
 }
 else {
     if(windowURL.includes(VIDEO_SEARCH) || windowURL.includes(VIDEO_TRENDING)) {
@@ -17,7 +16,7 @@ else {
     else {
         if(windowURL.includes(VIDEO_HOME)) {
             videos = document.querySelectorAll("a#video-title.yt-simple-endpoint.style-scope.ytd-grid-video-renderer");
-            turnRed(videos, getLinks(videos), VIDEO_HOME);
+            turnRed(videos, getBaitLinks(getLinks(videos)), VIDEO_HOME);
         }
         else {
             alert("This is not a valid Youtube Page!");
@@ -40,6 +39,16 @@ function getBaitLinks(videoURLS) {
     }
     blob = new Blob([urlLinks], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "output.txt");
+    
+    baitLinks = setTimeout(readForValues(), 5000);
+    return baitLinks.split(", ");
+}
+function readForValues() {
+    var values = "";
+    $.getJSON("output.json", function (data) {
+        values = $.parseJSON(data);
+    })
+    return values;
 }
 function turnRed(videos, videoURLS, type) {
     
