@@ -1,4 +1,13 @@
-import json, os, requests, string, sys
+import re, json, os, requests, string, sys
+import nltk
+nltk.download('all')
+nltk.download('maxent_treebank_pos_tagger')
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.corpus import opinion_lexicon
+from nltk.tokenize import treebank
+from sklearn.feature_extraction.text import CountVectorizer
+
 
 YOUTUBE_COMMENT_BASE_URL = 'https://www.googleapis.com/youtube/v3/commentThreads'
 
@@ -42,6 +51,44 @@ for i1 in range(0,4):
 		l1 = parsed_json1['items']
 		s1_comments.append(l1[j1]['snippet']['topLevelComment']['snippet']['textOriginal'])
 print(s1_comments)
+
+s1_comments = s1_comments.lower()
+words = s1_comments.split()
+
+letters_only = re.sub("[^a-zA-Z]", " ",l)
+
+stops = set(stopwords.words("english"))
+
+meaningful_words = [w for w in words if not w in stops]
+
+print( meaningful_words )
+
+sentence=s1_comments
+sentence= ''.join(s1_comments)
+tokenizer = treebank.TreebankWordTokenizer()
+pos_words = 0
+neg_words = 0
+tokenized_sent = [word.lower() for word in tokenizer.tokenize(sentence)]
+
+x = list(range(len(tokenized_sent))) # x axis for the plot
+y = []
+
+for word in tokenized_sent:
+    if word in opinion_lexicon.positive():
+        pos_words += 1
+        y.append(1) # positive
+    elif word in opinion_lexicon.negative():
+        neg_words += 1
+        y.append(-1) # negative
+    else:
+        y.append(0) # neutral
+
+if pos_words > neg_words:
+    print('Positive')
+elif pos_words < neg_words:
+    print('Negative')
+elif pos_words == neg_words:
+    print('Neutral')
 
 for i2 in range(5,9):
 	#j is the number of comments per video

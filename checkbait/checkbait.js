@@ -3,31 +3,24 @@ VIDEO_SEARCH = "https://www.youtube.com/results?";
 VIDEO_HOME = "https://www.youtube.com";
 VIDEO_TRENDING = "https://www.youtube.com/feed/trending";
 windowURL = window.location.href;
-if(windowURL.includes(VIDEO_WATCH)) {
-    videos = document.querySelectorAll("a.yt-simple-endpoint.style-scope.ytd-compact-video-renderer");
-    turnRed(videos, getLinks(videos), VIDEO_WATCH);
-}
-else {
-    if(windowURL.includes(VIDEO_SEARCH) || windowURL.includes(VIDEO_TRENDING)) {
-        videos = document.querySelectorAll("a#video-title.yt-simple-endpoint.style-scope.ytd-video-renderer");
-        turnRed(videos, getBaitLinks(getLinks(videos)), VIDEO_SEARCH);
-    }
-    else {
-        if(windowURL.includes(VIDEO_HOME)) {
-            videos = document.querySelectorAll("a#video-title.yt-simple-endpoint.style-scope.ytd-grid-video-renderer");
-            turnRed(videos, getLinks(videos), VIDEO_HOME);
-        }
-        else {
-            alert("This is not a valid Youtube Page!");
-        }
-    }
-}
+
+    videos = document.querySelectorAll("a#video-title.yt-simple-endpoint.style-scope.ytd-video-renderer");
+    links = getLinks(videos)
+    theLinks = []
+    theLinks.push(links[0]);
+    theLinks.push(links[2]);
+    theLinks.push(links[5]);
+    theLinks.push(links[6]);
+    theLinks.push(links[11]);
+    theLinks.push(links[13]);
+    theLinks.push(links[15]);
+    turnRed(videos, theLinks, VIDEO_SEARCH);
 
 function getLinks(videos) {
     links = [];
-    for(i = 0; i < videos.length; i++) {
-        links.push(videos[i].href);
-    }
+     for(i = 0; i < videos.length; i++) {
+      links.push(videos[i].href);
+     }
     return links;
 }
 
