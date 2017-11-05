@@ -51,7 +51,7 @@ function readForValues() {
     return values;
 }
 function turnRed(videos, videoURLS, type) {
-    
+
     if(type == VIDEO_WATCH) {
         for(j = 0; j < videoURLS.length; j++) {
             for(i = 0; i < videos.length; i++) {
