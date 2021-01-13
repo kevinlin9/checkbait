@@ -9,6 +9,11 @@ Well, the culprit is click bait journalism.
 ## What it does
 Our chrome extension finds offensive and disturbing viral content on any YouTube page and warns the user to avoid the videos. Our main goal for this hackathon is to identify these click bait videos and change the titles to red color, warning the user to avoid these videos.
 
+![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/564/228/datas/gallery.jpg)
+![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/564/239/datas/gallery.jpg)
+![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/564/248/datas/gallery.jpg)
+![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/564/251/datas/gallery.jpg)
+
 ## How we built it
 We built a model which learns from the user comments on what a click bait video is and then we did java script injection to change the traditional black color title of you tube to a red color one to warn user on the click bait content 
 
